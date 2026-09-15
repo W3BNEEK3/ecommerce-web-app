@@ -7,7 +7,9 @@ body{
     background-color: black;
     font-family: Arial, sans-serif;
     font-weight: 600;
-    color: white;
+    color: white; 
+    width: 100%;
+    height: 100%; 
 }
 /*
 =============================================
@@ -17,6 +19,11 @@ HEADER SECTION
 .header-section{
     display: flex;
     flex-direction: column;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    max-width: 100%;
     .top-header{
         display: flex;
         justify-content: space-evenly;
@@ -37,11 +44,19 @@ HEADER SECTION
         gap: 30px;
         padding-right: 30px;
     }
+    .hamburger-menu-container{
+        display: none;
+    }
     .header-icons .cart,
     .header-icons .support,
     .header-icons .accounts{
         cursor: pointer;
         transition: transform 0.4s ease, color 0.2s ease;
+    }
+    .search-container form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .search-container form input{
         padding: 10px;
@@ -54,8 +69,7 @@ HEADER SECTION
         color: white;
     }
     .search-container form button span{
-        position: relative;
-        top: 10px;
+        
         padding-left: 5px;
         transition: transform 0.4s ease, color 0.4s ease;
     }
@@ -67,8 +81,19 @@ HEADER SECTION
         color: #08b263
     }
 }
-.mobile-btn{
-    display: none;
+.mobile-sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #1a1a1a;
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+.mobile-sidebar.active{
+    transform: translateX(0);
 }
 .material-symbols-outlined {
   font-variation-settings:
@@ -82,16 +107,22 @@ HEADER SECTION
 PRODUCTS SECTION
 ===========================================================
 */
+main{
+    padding: 0 40px;
+}
 .products-section{
     padding: 30px;
-    width: 100vw;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .product-wrapper{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: start;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 30px 30px 30px 60px;
+    padding: 30px 30px 30px;
 }
 .product-card-container{
     padding: 0 10px 10px 10px;
@@ -148,16 +179,51 @@ PRODUCTS SECTION
 }
 @media (max-width: 480px) {
     .mobile-btn{display: block;}
-    .header-icons .cart,
-    .header-icons .support,
-    .header-icons .accounts{
+    .header-section .header-icons{
         display: none;
+    }
+    .header-section .header-icons .cart,
+    .header-section .header-icons .support,
+    .header-section .header-icons .accounts{
+        display: none;
+    }
+    .logo-container{
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .header-section .primary-header form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .header-section .primary-header form button{
+        padding: 5px;
+    }
+    .header-section .primary-header form input{
+        padding: 5px;
+        padding-inline: 10px;
+    }
+    .header-section .primary-header .hamburger-menu-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10px;
+    }
+    .header-section .hamburger-menu{
+        display: block;
+        cursor: pointer;
     }
     .primary-header div h1{
         font-size: 14px;
     }
     .search-bar{
         display: block;
-        padding-inline: 5px;
+        padding-inline: 3px;
+    }
+    .products-section .product-wrapper{
+        display: grid;
+        grid-template-columns: 1fr;
     }
 }
